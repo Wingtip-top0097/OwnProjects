@@ -1,0 +1,20 @@
+<p> Firstname : <input data-bind="value:firstname"/></p>
+<p> Firstname : <span data-bind="text:firstname"></span></p>
+
+<p> Lastname : <input data-bind="value:lastname"/></p>
+<p> Lastname : <span data-bind="text:lastname"></span></p>
+<hr/>
+<p> Fullname : <span data-bind="text:fullname">scsac</span></p>
+
+<script src="knockout-3.5.1.js"></script>
+<script>
+    var obj={
+        firstname:ko.observable("Khushboo"), // for two -way binding....
+        lastname:ko.observable("Soni"),
+        email:"kk@gmail.com" // for one way
+    }
+    obj.fullname=ko.computed(function(){
+        return obj.firstname()+' '+obj.lastname() +' (dynamic)';
+    })
+    ko.applyBindings(obj);
+</script>

@@ -1,0 +1,49 @@
+<p>Friends (<span data-bind="text:friends().length"></span>)</p>
+<ul data-bind="foreach:friends">
+    <li>
+        <span data-bind="text:name"></span>
+        <input type="checkbox" data-bind="checked:knowJS">
+        <input data-bind="value:favLib,visible:knowJS" placeholder="enter favourite library">
+        <button data-bind="click:removeFriend">X</button>
+
+    </li>
+</ul>
+<span data-bind="visible:friends().length>4">you can't add more than 5 friends</span>
+<button data-bind="click:addFriend,enable:friends().length<5">Add Friend</button>
+
+<script src="knockout-3.5.1.js"></script>
+<script src="knockout.mapping-2.4.1.js"></script>
+<script>
+// send to server
+// 1. ko.mapping.toJS(obj.friends)
+// 2. ko.mapping.toJSON(obj.friends)
+
+
+
+    //from DB
+    function Frnd() {
+        return {
+            name: 'Buddy',
+            knowJS: true,
+            favLib: 'Knockout',
+            isWeired: false
+        }
+    }
+
+    function Friend(frnd) {
+        
+        var map = ko.mapping.fromJS(frnd); // mapping with the frnd object and make every single property as observable.
+        map.removeFriend = function(){
+            obj.friends.remove(map);
+        }
+        return map;  // map is nothing but a mapped friends.
+    }
+   
+    var obj = {
+        friends: ko.observableArray([new Friend(new Frnd())])
+    }
+    obj.addFriend = function () {
+        obj.friends.push(new Friend(new Frnd()));
+    }
+    ko.applyBindings(obj);
+</script>
