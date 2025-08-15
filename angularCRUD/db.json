@@ -1,0 +1,32 @@
+{
+  "Users": [
+    {
+      "id": "1",
+      "Email": 1,
+      "Name": "Some component",
+      "Mobile": 223,
+      "Age": 1
+    },
+    {
+      "id": "5174",
+      "Name": "sddsavddddddd",
+      "Email": "sdf@yopmail.com",
+      "Mobile": "7878878787",
+      "Age": "33"
+    },
+    {
+      "id": "6003",
+      "Name": "sddsav",
+      "Email": "sc@yopmail.com",
+      "Mobile": "93323355555",
+      "Age": "33"
+    },
+    {
+      "id": "5a23",
+      "Name": "sddsav",
+      "Email": "sdf@yopmail.com",
+      "Mobile": "7878878787",
+      "Age": "334"
+    }
+  ]
+}

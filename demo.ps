@@ -1,0 +1,27 @@
+# Set the directory where your JavaScript files are located
+$directoryPath = "C:\work\react-demo\demo\build"
+
+# Get the value of $REACT_APP_BASEURL from environment variables
+$baseUrl = [Environment]::GetEnvironmentVariable("$REACT_APP_BASEURL")
+
+# If $REACT_APP_BASEURL is not set, provide a default value or handle as needed
+if (-not $baseUrl) {
+    $baseUrl = "https://example.com"
+}
+
+# Get all JavaScript files recursively in the specified directory
+$jsFiles = Get-ChildItem -Path $directoryPath -Filter *.js -Recurse
+
+# Iterate through each JavaScript file and replace $REACT_APP_BASEURL
+foreach ($file in $jsFiles) {
+    $content = Get-Content -Path $file.FullName -Raw
+    $newContent = $content -replace '$REACT_APP_BASEURL', $baseUrl
+    
+    # Uncomment the next line to preview the changes without modifying files
+    # Write-Output $newContent
+    
+    # Uncomment the next line to overwrite the original file with the updated content
+    # Set-Content -Path $file.FullName -Value $newContent
+}
+
+Write-Output "Replacement complete."
